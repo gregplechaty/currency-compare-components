@@ -1,0 +1,5 @@
+project plan
+
+-sort results
+-Allow for setting of base currency
+-make more reactive (sizing) 
