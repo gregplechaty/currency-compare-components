@@ -1,5 +1,16 @@
 project plan
 
+
+
+
+potential components:
+-margin
+-bar
+-bar contents?
+-header
+-chart area?
+
+Other things I may want to add:
+-ability to set base currency
 -sort results
--Allow for setting of base currency
 -make more reactive (sizing) 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Legend from './components/Legend/Legend.js';
+import BarChart from './components/BarChart/BarChart.js';
 
 function App() {
   
@@ -9,23 +10,7 @@ function App() {
   const [startMonth, setStartMonth] = useState('01')
   const [startYear, setStartYear] = useState('2019')
   const [exchangeCurrency, setExchangeCurrency] = useState('GBP')
-    // Dropdown values 
-  const dropdownYears = [2020, 2019, 2018, 2017, 2016]
-  const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'HKD',]
-  const dropdownStartMonths = [
-      {value: '00', text: 'Jan',},
-      {value: '01', text: 'Feb',}, 
-      {value: '02', text: 'Mar',}, 
-      {value: '03', text: 'Apr',}, 
-      {value: '04', text: 'May',}, 
-      {value: '05', text: 'Jun',}, 
-      {value: '06', text: 'Jul',}, 
-      {value: '07', text: 'Aug',}, 
-      {value: '08', text: 'Sep',}, 
-      {value: '09', text: 'Oct',}, 
-      {value: '10', text: 'Nov',}, 
-      {value: '11', text: 'Dec',}, 
-  ]
+
    useEffect(doFetch, [startMonth, startYear, numMonths, exchangeCurrency]);
 
    function calculateDateArray() {
@@ -104,51 +89,20 @@ function App() {
             </div>
             <div className="ExchangeRateChart-margin">
             </div>
-            <div className="ExchangeRateChart-legend">
-                <div>
-                    <label for="start_month">Start Month:</label>
-                    <select id="start_month"
-                        value={startMonth}
-                        onChange={ev => setStartMonth(ev.target.value)}>
-                        {dropdownStartMonths.map(month => (
-                            <option key={month.value} value={month.value}>{month.text}</option>
-                        ))}
-                    </select>
-                    <select id="start_year"
-                    value={startYear}
-                    onChange={ev => setStartYear(ev.target.value)}>
-                        {dropdownYears.map(year => (
-                            <option key={year}>{year}</option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label for="numOfMonths">Number of months (up to 12):</label>
-                        <input type="number" id="numOfMonths" min="1" max="12"
-                            value={numMonths} 
-                            onChange={ev => setNumMonths(ev.target.value)}/>
-                </div>
-                <div>
-                    <select id="currency_select"
-                        value={exchangeCurrency} 
-                        onChange={ev => setExchangeCurrency(ev.target.value)}>
-                        {currencies.map(currency =>(
-                            <option key={currency}>{currency}</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
-            <div className="ExchangeRateChart-display">
-                {stateObjects
-                .map (bar => (
-                    <div className="ExchangeRateChart-bar" key={bar.rate}  style={{width: calcBarWidth(bar.rate) + '%', height: 95/stateObjects.length + '%' }}>
-                        <div className="ExchangeRateChart-bar-text" >
-                            <p>{bar.date}: <strong>{bar.rate}</strong> {bar.currency}</p>
-                        </div>
-                    </div>
-                ))
-                }
-            </div>
+            <Legend
+                startMonth={startMonth}
+                onChange={ev => setStartMonth(ev.target.value)}
+                startYear={startYear}
+                onSetStartYear={ev => setStartYear(ev.target.value)}
+                numMonths={numMonths}
+                onSetNumMonths={ev => setNumMonths(ev.target.value)}
+                exchangeCurrency={exchangeCurrency}
+                onSetExchangeCurrency={ev => setExchangeCurrency(ev.target.value)}
+            />
+            <BarChart 
+                stateObjects={stateObjects}
+                calcBarWidth={calcBarWidth}
+            />
             <div className="ExchangeRateChart-margin"></div>
         </div>
     </div>
