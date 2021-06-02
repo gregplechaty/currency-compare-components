@@ -3,8 +3,9 @@
 ###### Notes: ######
 - Data is provided by https://exchangerate.host/.
 - Bar chart represents proportional value of each currency.
-- The page returns monthly currency exchange rates against the Euro. Essentially, how much of a given currency is needed to purchase 1 Euro.
-- Three inputs are required: Start Month, Number of months to display, and currency. 
+- New for this version is the control of the base currency of comparison. Numbers represent how much currency is needed to purchase 1 base currency.
+- Three inputs are required: Start Month, Number of months to display, currency, and base currency.
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

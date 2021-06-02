@@ -10,8 +10,9 @@ function App() {
   const [startMonth, setStartMonth] = useState('01')
   const [startYear, setStartYear] = useState('2019')
   const [exchangeCurrency, setExchangeCurrency] = useState('GBP')
+  const [baseCurrency, setBaseCurrency] = useState('EUR')
 
-   useEffect(doFetch, [startMonth, startYear, numMonths, exchangeCurrency]);
+   useEffect(doFetch, [startMonth, startYear, numMonths, exchangeCurrency, baseCurrency]);
 
    function calculateDateArray() {
       const startDate = new Date(startYear, startMonth, 1);
@@ -39,7 +40,7 @@ function App() {
     let fetchRequests = [];
     let dates = calculateDateArray();
     for (let date of dates) {
-        let url = 'https://api.exchangerate.host/' + date + '?symbols=' + exchangeCurrency;
+        let url = 'https://api.exchangerate.host/' + date + '?symbols=' + exchangeCurrency + '&base='+ baseCurrency;
         let fetchRequest = fetch(url)
         fetchRequests.push(fetchRequest)
     };
@@ -97,7 +98,9 @@ function App() {
                 numMonths={numMonths}
                 onSetNumMonths={ev => setNumMonths(ev.target.value)}
                 exchangeCurrency={exchangeCurrency}
+                baseCurrency={baseCurrency}
                 onSetExchangeCurrency={ev => setExchangeCurrency(ev.target.value)}
+                onSetBaseCurrency={ev => setBaseCurrency(ev.target.value)}
             />
             <BarChart 
                 stateObjects={stateObjects}
