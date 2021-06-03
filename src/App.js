@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Legend from './components/Legend/Legend.js';
 import BarChart from './components/BarChart/BarChart.js';
+import ChartContainer from './components/ChartContainer/ChartContainer.js';
+
+
 
 function App() {
   
@@ -82,14 +85,7 @@ function App() {
   
   return (
     <div className="ExchangeRate">
-        <div className="ExchangeRateChart">
-            <div className="ExchangeRateChart-margin-top">
-            </div>
-            <div className="ExchangeRateChart-title">
-                <h3>Currency Exchange Rates</h3>
-            </div>
-            <div className="ExchangeRateChart-margin">
-            </div>
+        <ChartContainer>
             <Legend
                 startMonth={startMonth}
                 onChange={ev => setStartMonth(ev.target.value)}
@@ -100,14 +96,12 @@ function App() {
                 exchangeCurrency={exchangeCurrency}
                 baseCurrency={baseCurrency}
                 onSetExchangeCurrency={ev => setExchangeCurrency(ev.target.value)}
-                onSetBaseCurrency={ev => setBaseCurrency(ev.target.value)}
-            />
+                onSetBaseCurrency={ev => setBaseCurrency(ev.target.value)} />
             <BarChart 
                 stateObjects={stateObjects}
-                calcBarWidth={calcBarWidth}
-            />
-            <div className="ExchangeRateChart-margin"></div>
-        </div>
+                calcBarWidth={calcBarWidth} />
+        </ChartContainer>
+        
     </div>
   );
 }

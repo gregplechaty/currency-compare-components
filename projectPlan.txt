@@ -1,7 +1,7 @@
 project plan
 
 
-
+git push <heroku url> HEAD:master
 
 potential components:
 -margin
