@@ -56,7 +56,7 @@ function App() {
             let barData = {
                 'date': data.date,
                 'currency': exchangeCurrency,
-                'rate': data.rates.[exchangeCurrency]
+                'rate': data.rates[exchangeCurrency]
             };
         setStateObjects(stateObjects => [...stateObjects, barData])
         })
